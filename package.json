@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-selected-word-as-alias",
+	"name": "obsidian-quick-linker",
 	"version": "1.0.0",
-	"description": "Use the selected word as an alias in link suggestion.",
+	"description": "Quickly insert and manage internal links with search, filtering, and keyboard-only navigation",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
