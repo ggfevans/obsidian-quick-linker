@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Git Commit Guidelines
+
+- Do not add Claude co-authorship or generated-with messages to commit messages
+- Keep commit messages clean and professional
+- Focus on what changed and why
+
 ## Project Overview
 
 This is an Obsidian plugin called "Quick Linker" (formerly "Better Internal Link Inserter") that enhances the link insertion experience in Obsidian. The plugin allows users to quickly insert internal links using selected text as an alias.
@@ -16,8 +22,8 @@ This is an Obsidian plugin called "Quick Linker" (formerly "Better Internal Link
 
 The plugin is a simple single-file Obsidian plugin:
 
-- **main.ts** - Contains the entire plugin logic in a single class `BetterLinkInserterPlugin`
-- The plugin registers one command: "Insert an internal link (using selected word as alias if possible)"
+- **main.ts** - Contains the entire plugin logic in a single class `QuickLinkerPlugin`
+- The plugin registers one command: "Quick Link: insert an internal link"
 - When triggered, it wraps selected text in `[[|selected text]]` format, or just `[[]]` if no text is selected
 - Uses esbuild for bundling with watch mode in development
 
