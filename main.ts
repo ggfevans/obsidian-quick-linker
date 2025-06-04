@@ -4,7 +4,7 @@ export default class QuickLinkerPlugin extends Plugin {
 	async onload() {
 		this.addCommand({
 			id: "use-selected-word-as-alias",
-			name: "Insert an internal link (using selected word as alias if possible)",
+			name: "Quick Link: insert an internal link",
 			editorCallback: this.insertInternalLinkWithAlias,
 		});
 	}
