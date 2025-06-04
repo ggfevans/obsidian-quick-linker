@@ -1,9 +1,9 @@
 {
-	"id": "obsidian-better-internal-link-inserter",
-	"name": "Obsidian better Internal Link Inserter",
+	"id": "obsidian-quick-linker",
+	"name": "Quick Linker",
 	"version": "1.0.0",
 	"minAppVersion": "0.12.0",
-	"description": "Allow to use the selected word as an alias in link suggestion.",
+	"description": "Quickly insert and manage internal links with search, filtering, and keyboard-only navigation",
 	"author": "Obsidian",
 	"authorUrl": "https://obsidian.md",
 	"isDesktopOnly": false
