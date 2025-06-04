@@ -1,6 +1,6 @@
 import { Editor, MarkdownView, Plugin } from "obsidian";
 
-export default class BetterLinkInserterPlugin extends Plugin {
+export default class QuickLinkerPlugin extends Plugin {
 	async onload() {
 		this.addCommand({
 			id: "use-selected-word-as-alias",
