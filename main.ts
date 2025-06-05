@@ -68,8 +68,11 @@ class QuickLinkerModal extends Modal {
 			return;
 		}
 		
+		// Limit initial display to 5 results
+		const resultsToShow = files.slice(0, 5);
+		
 		// Display each file as a result
-		files.forEach(file => {
+		resultsToShow.forEach(file => {
 			const resultEl = this.resultsContainer.createEl("div", {
 				cls: "quick-linker-result"
 			});
