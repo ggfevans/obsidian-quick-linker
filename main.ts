@@ -4,6 +4,7 @@ class QuickLinkerModal extends Modal {
 	private editor: Editor;
 	private selectedText: string;
 	private cursorPosition: EditorPosition;
+	private searchInput: HTMLInputElement;
 
 	constructor(app: App, editor: Editor, selectedText: string, cursorPosition: EditorPosition) {
 		super(app);
@@ -17,6 +18,21 @@ class QuickLinkerModal extends Modal {
 		
 		// Set modal title in the title bar
 		titleEl.setText("Quick Link");
+		
+		// Create search input field
+		this.searchInput = contentEl.createEl("input", {
+			type: "text",
+			placeholder: "Search for a note...",
+			cls: "quick-linker-search-input"
+		});
+		
+		// Pre-fill with selected text if any
+		if (this.selectedText) {
+			this.searchInput.value = this.selectedText;
+		}
+		
+		// Auto-focus the input
+		this.searchInput.focus();
 		
 		// The modal close button (X) is automatically added by Obsidian in the title bar
 		// Escape key handler is also automatically provided by the Modal class
