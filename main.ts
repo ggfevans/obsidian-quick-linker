@@ -20,11 +20,20 @@ class QuickLinkerModal extends Modal {
 		
 		// The modal close button (X) is automatically added by Obsidian in the title bar
 		// Escape key handler is also automatically provided by the Modal class
+		
+		// Debug logging
+		console.log("QuickLinkerModal opened");
+		console.log("Selected text:", this.selectedText);
+		console.log("Cursor position:", this.cursorPosition);
+		console.log("Has editor reference:", !!this.editor);
 	}
 
 	onClose() {
 		const { contentEl } = this;
 		contentEl.empty();
+		
+		// Debug logging
+		console.log("QuickLinkerModal closed");
 	}
 }
 
@@ -43,6 +52,11 @@ export default class QuickLinkerPlugin extends Plugin {
 		const selectedText = editor.getSelection();
 		// Store cursor position - if there's a selection, getCursor returns the start position
 		const cursorPosition = editor.getCursor();
+		
+		// Debug logging
+		console.log("Quick Link command triggered");
+		console.log("Selected text captured:", selectedText);
+		console.log("Cursor position captured:", cursorPosition);
 		
 		// Open the modal instead of directly inserting
 		const modal = new QuickLinkerModal(this.app, editor, selectedText, cursorPosition);
