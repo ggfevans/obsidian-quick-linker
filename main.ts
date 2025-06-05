@@ -1,16 +1,23 @@
-import { App, Editor, EditorPosition, MarkdownView, Modal, Plugin } from "obsidian";
+import { App, Editor, EditorPosition, MarkdownView, Modal, Plugin, TFile } from "obsidian";
 
 class QuickLinkerModal extends Modal {
 	private editor: Editor;
 	private selectedText: string;
 	private cursorPosition: EditorPosition;
 	private searchInput: HTMLInputElement;
+	private resultsContainer: HTMLElement;
+	private allFiles: TFile[];
 
 	constructor(app: App, editor: Editor, selectedText: string, cursorPosition: EditorPosition) {
 		super(app);
 		this.editor = editor;
 		this.selectedText = selectedText;
 		this.cursorPosition = cursorPosition;
+		this.allFiles = this.collectMarkdownFiles();
+	}
+
+	private collectMarkdownFiles(): TFile[] {
+		return this.app.vault.getMarkdownFiles();
 	}
 
 	onOpen() {
@@ -31,6 +38,14 @@ class QuickLinkerModal extends Modal {
 			this.searchInput.value = this.selectedText;
 		}
 		
+		// Create results container
+		this.resultsContainer = contentEl.createEl("div", {
+			cls: "quick-linker-results"
+		});
+		
+		// Display all notes initially
+		this.displayResults(this.allFiles);
+		
 		// Auto-focus the input
 		this.searchInput.focus();
 		
@@ -42,6 +57,38 @@ class QuickLinkerModal extends Modal {
 		console.log("Selected text:", this.selectedText);
 		console.log("Cursor position:", this.cursorPosition);
 		console.log("Has editor reference:", !!this.editor);
+	}
+
+	private displayResults(files: TFile[]) {
+		// Clear existing results
+		this.resultsContainer.empty();
+		
+		// Display each file as a result
+		files.forEach(file => {
+			const resultEl = this.resultsContainer.createEl("div", {
+				cls: "quick-linker-result"
+			});
+			
+			// Extract basename (title) from file
+			const title = file.basename;
+			resultEl.textContent = title;
+			
+			// Add click handler
+			resultEl.addEventListener("click", () => {
+				this.insertLink(file);
+			});
+		});
+	}
+
+	private insertLink(file: TFile) {
+		const linkText = this.selectedText ? `${file.basename}|${this.selectedText}` : file.basename;
+		const link = `[[${linkText}]]`;
+		
+		// Insert the link at the stored cursor position
+		this.editor.replaceRange(link, this.cursorPosition);
+		
+		// Close the modal
+		this.close();
 	}
 
 	onClose() {
