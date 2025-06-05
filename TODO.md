@@ -17,15 +17,15 @@
 - [x] Run `npm run build` to ensure no compilation errors
 
 ## Phase 2: Basic Modal Infrastructure
-- [ ] Create `QuickLinkerModal` class extending Modal
-- [ ] Add modal title "Quick Link"
-- [ ] Implement close button (X) in top right
-- [ ] Add Escape key handler to close modal
-- [ ] Replace direct insertion with modal opening
-- [ ] Store selected text when command triggered
-- [ ] Maintain cursor position for insertion
-- [ ] Test modal opens/closes properly
-- [ ] Test that selected text is captured
+- [x] Create `QuickLinkerModal` class extending Modal
+- [x] Add modal title "Quick Link"
+- [x] Implement close button (X) in top right
+- [x] Add Escape key handler to close modal
+- [x] Replace direct insertion with modal opening
+- [x] Store selected text when command triggered
+- [x] Maintain cursor position for insertion
+- [x] Test modal opens/closes properly
+- [x] Test that selected text is captured
 
 ## Phase 3: Search Input Field
 - [ ] Add search input field to modal
