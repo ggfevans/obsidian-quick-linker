@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"minAppVersion": "0.12.0",
 	"description": "Quickly insert and manage internal links with search, filtering, and keyboard-only navigation",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
+	"author": "Gareth Evans",
+	"authorUrl": "https://github.com/ggfevans/obsidian-quick-linker/",
 	"isDesktopOnly": false
 }

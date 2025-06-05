@@ -1,20 +1,20 @@
 # Quick Linker Development Checklist
 
 ## Phase 1: Core Rebrand ✅ Planning Complete
-- [ ] Update main.ts class name from `BetterLinkInserterPlugin` to `QuickLinkerPlugin`
-- [ ] Update manifest.json
-  - [ ] Change id to `obsidian-quick-linker`
-  - [ ] Change name to "Quick Linker"
-  - [ ] Update description to "Quickly insert and manage internal links with search, filtering, and keyboard-only navigation"
-  - [ ] Review and update author information
-- [ ] Update package.json
-  - [ ] Change name to `obsidian-quick-linker`
-  - [ ] Update description to match manifest.json
-- [ ] Update command name to "Quick Link: insert an internal link"
-- [ ] Clean up README.md (remove duplicate content lines 58-93)
-- [ ] Update CLAUDE.md class name reference
-- [ ] Test that plugin still loads and functions after rebrand
-- [ ] Run `npm run build` to ensure no compilation errors
+- [x] Update main.ts class name from `BetterLinkInserterPlugin` to `QuickLinkerPlugin`
+- [x] Update manifest.json
+  - [x] Change id to `obsidian-quick-linker`
+  - [x] Change name to "Quick Linker"
+  - [x] Update description to "Quickly insert and manage internal links with search, filtering, and keyboard-only navigation"
+  - [x] Review and update author information
+- [x] Update package.json
+  - [x] Change name to `obsidian-quick-linker`
+  - [x] Update description to match manifest.json
+- [x] Update command name to "Quick Link: insert an internal link"
+- [x] Clean up README.md (remove duplicate content lines 58-93)
+- [x] Update CLAUDE.md class name reference
+- [x] Test that plugin still loads and functions after rebrand
+- [x] Run `npm run build` to ensure no compilation errors
 
 ## Phase 2: Basic Modal Infrastructure
 - [ ] Create `QuickLinkerModal` class extending Modal
