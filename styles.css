@@ -49,6 +49,11 @@
     background-color: var(--background-modifier-hover);
 }
 
+.quick-linker-result.is-selected {
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
 .quick-linker-no-results {
     padding: 16px 12px;
     text-align: center;
