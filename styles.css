@@ -1,0 +1,64 @@
+/* Quick Linker Plugin Styles */
+
+.quick-linker-search-input {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+    font-family: var(--font-interface);
+    font-size: var(--font-ui-medium);
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+.quick-linker-search-input:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+.quick-linker-search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.quick-linker-results {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+}
+
+.quick-linker-result {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--background-modifier-border);
+    color: var(--text-normal);
+    font-family: var(--font-interface);
+    font-size: var(--font-ui-medium);
+}
+
+.quick-linker-result:last-child {
+    border-bottom: none;
+}
+
+.quick-linker-result:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+.quick-linker-result.is-selected {
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.quick-linker-no-results {
+    padding: 16px 12px;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--font-interface);
+    font-size: var(--font-ui-medium);
+    font-style: italic;
+}
