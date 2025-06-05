@@ -1,0 +1,25 @@
+/* Quick Linker Plugin Styles */
+
+.quick-linker-search-input {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+    font-family: var(--font-interface);
+    font-size: var(--font-ui-medium);
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+.quick-linker-search-input:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+.quick-linker-search-input::placeholder {
+    color: var(--text-muted);
+}
