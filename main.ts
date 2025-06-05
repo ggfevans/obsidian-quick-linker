@@ -6,10 +6,13 @@ class QuickLinkerModal extends Modal {
 	}
 
 	onOpen() {
-		const { contentEl } = this;
+		const { contentEl, titleEl } = this;
 		
-		// Add modal title
-		contentEl.createEl("h2", { text: "Quick Link" });
+		// Set modal title in the title bar
+		titleEl.setText("Quick Link");
+		
+		// The modal close button (X) is automatically added by Obsidian in the title bar
+		// No need to implement it manually
 	}
 
 	onClose() {
