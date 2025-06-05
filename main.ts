@@ -46,6 +46,11 @@ class QuickLinkerModal extends Modal {
 		// Display all notes initially
 		this.displayResults(this.allFiles);
 		
+		// Add input event listener for search
+		this.searchInput.addEventListener("input", () => {
+			this.handleSearch();
+		});
+		
 		// Auto-focus the input
 		this.searchInput.focus();
 		
@@ -63,6 +68,15 @@ class QuickLinkerModal extends Modal {
 		// Clear existing results
 		this.resultsContainer.empty();
 		
+		if (files.length === 0) {
+			// Display "No results found" message
+			const noResultsEl = this.resultsContainer.createEl("div", {
+				cls: "quick-linker-no-results"
+			});
+			noResultsEl.textContent = "No results found";
+			return;
+		}
+		
 		// Display each file as a result
 		files.forEach(file => {
 			const resultEl = this.resultsContainer.createEl("div", {
@@ -78,6 +92,21 @@ class QuickLinkerModal extends Modal {
 				this.insertLink(file);
 			});
 		});
+	}
+
+	private handleSearch() {
+		const query = this.searchInput.value.trim();
+		
+		if (query === "") {
+			// Show all notes when search is empty
+			this.displayResults(this.allFiles);
+		} else {
+			// Filter files using case-insensitive substring matching
+			const filteredFiles = this.allFiles.filter(file => 
+				file.basename.toLowerCase().includes(query.toLowerCase())
+			);
+			this.displayResults(filteredFiles);
+		}
 	}
 
 	private insertLink(file: TFile) {
