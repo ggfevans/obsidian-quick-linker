@@ -17,58 +17,58 @@
 - [x] Run `npm run build` to ensure no compilation errors
 
 ## Phase 2: Basic Modal Infrastructure
-- [ ] Create `QuickLinkerModal` class extending Modal
-- [ ] Add modal title "Quick Link"
-- [ ] Implement close button (X) in top right
-- [ ] Add Escape key handler to close modal
-- [ ] Replace direct insertion with modal opening
-- [ ] Store selected text when command triggered
-- [ ] Maintain cursor position for insertion
-- [ ] Test modal opens/closes properly
-- [ ] Test that selected text is captured
+- [x] Create `QuickLinkerModal` class extending Modal
+- [x] Add modal title "Quick Link"
+- [x] Implement close button (X) in top right
+- [x] Add Escape key handler to close modal
+- [x] Replace direct insertion with modal opening
+- [x] Store selected text when command triggered
+- [x] Maintain cursor position for insertion
+- [x] Test modal opens/closes properly
+- [x] Test that selected text is captured
 
 ## Phase 3: Search Input Field
-- [ ] Add search input field to modal
-- [ ] Auto-focus input on modal open
-- [ ] Pre-fill input with selected text (if any)
-- [ ] Add placeholder text "Search for a note..."
-- [ ] Style input to match Obsidian design
-- [ ] Handle empty selection gracefully
-- [ ] Test input focus behavior
-- [ ] Test pre-fill functionality
+- [x] Add search input field to modal
+- [x] Auto-focus input on modal open
+- [x] Pre-fill input with selected text (if any)
+- [x] Add placeholder text "Search for a note..."
+- [x] Style input to match Obsidian design
+- [x] Handle empty selection gracefully
+- [x] Test input focus behavior
+- [x] Test pre-fill functionality
 
 ## Phase 4: Note Collection & Display
-- [ ] Collect all markdown files from vault
-- [ ] Extract basenames (titles) from files
-- [ ] Create results container below search input
-- [ ] Display all notes as list initially
-- [ ] Add CSS class "quick-linker-result" to each result
-- [ ] Implement click handler for results
-- [ ] Insert `[[filename|selected text]]` on click
-- [ ] Close modal after insertion
-- [ ] Make results scrollable
-- [ ] Test with vaults of different sizes
+- [x] Collect all markdown files from vault
+- [x] Extract basenames (titles) from files
+- [x] Create results container below search input
+- [x] Display all notes as list initially
+- [x] Add CSS class "quick-linker-result" to each result
+- [x] Implement click handler for results
+- [x] Insert `[[filename|selected text]]` on click
+- [x] Close modal after insertion
+- [x] Make results scrollable
+- [x] Test with vaults of different sizes
 
 ## Phase 5: Basic Search Implementation
-- [ ] Add input event listener to search field
-- [ ] Implement case-insensitive substring matching
-- [ ] Filter results in real-time as user types
-- [ ] Show all notes when search is empty
-- [ ] Display "No results found" message
-- [ ] Limit initial display to 5 results
-- [ ] Test search performance
-- [ ] Test edge cases (special characters, etc.)
+- [x] Add input event listener to search field
+- [x] Implement case-insensitive substring matching
+- [x] Filter results in real-time as user types
+- [x] Show all notes when search is empty
+- [x] Display "No results found" message
+- [x] Limit initial display to 5 results
+- [x] Test search performance
+- [x] Test edge cases (special characters, etc.)
 
 ## Phase 6: Keyboard Navigation
-- [ ] Track selected result index
-- [ ] Implement up/down arrow key navigation
-- [ ] Add "is-selected" class for visual highlighting
-- [ ] Ensure selected item scrolls into view
-- [ ] Implement Enter key to insert selected result
-- [ ] Reset selection on search change
-- [ ] Prevent arrow keys from moving cursor in input
-- [ ] Implement selection wrapping (last to first)
-- [ ] Test all keyboard interactions
+- [x] Track selected result index
+- [x] Implement up/down arrow key navigation
+- [x] Add "is-selected" class for visual highlighting
+- [x] Ensure selected item scrolls into view
+- [x] Implement Enter key to insert selected result
+- [x] Reset selection on search change
+- [x] Prevent arrow keys from moving cursor in input
+- [x] Implement selection wrapping (last to first)
+- [x] Test all keyboard interactions
 
 ## Phase 7: Fuzzy Search Implementation
 - [ ] Research/implement fuzzy matching algorithm
