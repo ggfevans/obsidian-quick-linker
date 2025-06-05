@@ -12,7 +12,7 @@ class QuickLinkerModal extends Modal {
 		titleEl.setText("Quick Link");
 		
 		// The modal close button (X) is automatically added by Obsidian in the title bar
-		// No need to implement it manually
+		// Escape key handler is also automatically provided by the Modal class
 	}
 
 	onClose() {
