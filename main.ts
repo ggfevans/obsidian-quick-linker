@@ -1,4 +1,18 @@
-import { Editor, MarkdownView, Plugin } from "obsidian";
+import { App, Editor, MarkdownView, Modal, Plugin } from "obsidian";
+
+class QuickLinkerModal extends Modal {
+	constructor(app: App) {
+		super(app);
+	}
+
+	onOpen() {
+		// Modal content will be added here
+	}
+
+	onClose() {
+		// Cleanup when modal is closed
+	}
+}
 
 export default class QuickLinkerPlugin extends Plugin {
 	async onload() {
