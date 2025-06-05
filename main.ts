@@ -1,8 +1,13 @@
 import { App, Editor, MarkdownView, Modal, Plugin } from "obsidian";
 
 class QuickLinkerModal extends Modal {
-	constructor(app: App) {
+	private editor: Editor;
+	private selectedText: string;
+
+	constructor(app: App, editor: Editor, selectedText: string) {
 		super(app);
+		this.editor = editor;
+		this.selectedText = selectedText;
 	}
 
 	onOpen() {
@@ -33,13 +38,11 @@ export default class QuickLinkerPlugin extends Plugin {
 	onunload() {}
 
 	private insertInternalLinkWithAlias = (editor: Editor, view: MarkdownView) => {
-		const selectedWord = editor.getSelection();
-		const hasSelectedWord = selectedWord !== "";
-
-		const linkText = hasSelectedWord ? `|${selectedWord}` : "";
-		const cursorOffset = hasSelectedWord ? 3 + selectedWord.length : 2;
-
-		this.replaceSelectionAndMoveCursor(editor, `[[${linkText}]]`, cursorOffset);
+		const selectedText = editor.getSelection();
+		
+		// Open the modal instead of directly inserting
+		const modal = new QuickLinkerModal(this.app, editor, selectedText);
+		modal.open();
 	};
 
 	private replaceSelectionAndMoveCursor = (editor: Editor, text: string, cursorOffset: number) => {
