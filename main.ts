@@ -7,6 +7,8 @@ class QuickLinkerModal extends Modal {
 	private searchInput: HTMLInputElement;
 	private resultsContainer: HTMLElement;
 	private allFiles: TFile[];
+	private currentResults: TFile[];
+	private selectedIndex: number;
 
 	constructor(app: App, editor: Editor, selectedText: string, cursorPosition: EditorPosition) {
 		super(app);
@@ -14,6 +16,8 @@ class QuickLinkerModal extends Modal {
 		this.selectedText = selectedText;
 		this.cursorPosition = cursorPosition;
 		this.allFiles = this.collectMarkdownFiles();
+		this.currentResults = this.allFiles;
+		this.selectedIndex = 0;
 	}
 
 	private collectMarkdownFiles(): TFile[] {
@@ -51,11 +55,20 @@ class QuickLinkerModal extends Modal {
 			this.handleSearch();
 		});
 		
+		// Add keyboard navigation
+		this.searchInput.addEventListener("keydown", (e) => {
+			this.handleKeydown(e);
+		});
+		
 		// Auto-focus the input
 		this.searchInput.focus();
 	}
 
 	private displayResults(files: TFile[]) {
+		// Store current results for keyboard navigation
+		this.currentResults = files;
+		this.selectedIndex = 0; // Reset selection
+		
 		// Clear existing results
 		this.resultsContainer.empty();
 		
@@ -72,9 +85,9 @@ class QuickLinkerModal extends Modal {
 		const resultsToShow = files.slice(0, 5);
 		
 		// Display each file as a result
-		resultsToShow.forEach(file => {
+		resultsToShow.forEach((file, index) => {
 			const resultEl = this.resultsContainer.createEl("div", {
-				cls: "quick-linker-result"
+				cls: `quick-linker-result ${index === 0 ? 'is-selected' : ''}`
 			});
 			
 			// Extract basename (title) from file
@@ -86,6 +99,60 @@ class QuickLinkerModal extends Modal {
 				this.insertLink(file);
 			});
 		});
+	}
+
+	private handleKeydown(e: KeyboardEvent) {
+		if (e.key === "ArrowDown") {
+			e.preventDefault();
+			this.navigateDown();
+		} else if (e.key === "ArrowUp") {
+			e.preventDefault();
+			this.navigateUp();
+		} else if (e.key === "Enter") {
+			e.preventDefault();
+			this.selectCurrent();
+		}
+	}
+
+	private navigateDown() {
+		const maxIndex = Math.min(this.currentResults.length - 1, 4); // Limited to 5 results
+		if (this.selectedIndex < maxIndex) {
+			this.updateSelection(this.selectedIndex + 1);
+		} else {
+			this.updateSelection(0); // Wrap to first
+		}
+	}
+
+	private navigateUp() {
+		const maxIndex = Math.min(this.currentResults.length - 1, 4); // Limited to 5 results
+		if (this.selectedIndex > 0) {
+			this.updateSelection(this.selectedIndex - 1);
+		} else {
+			this.updateSelection(maxIndex); // Wrap to last
+		}
+	}
+
+	private updateSelection(newIndex: number) {
+		// Remove selection from current item
+		const currentEl = this.resultsContainer.children[this.selectedIndex] as HTMLElement;
+		if (currentEl) {
+			currentEl.removeClass("is-selected");
+		}
+		
+		// Add selection to new item
+		this.selectedIndex = newIndex;
+		const newEl = this.resultsContainer.children[this.selectedIndex] as HTMLElement;
+		if (newEl) {
+			newEl.addClass("is-selected");
+			newEl.scrollIntoView({ block: "nearest" });
+		}
+	}
+
+	private selectCurrent() {
+		if (this.currentResults.length > 0 && this.selectedIndex < this.currentResults.length) {
+			const selectedFile = this.currentResults[this.selectedIndex];
+			this.insertLink(selectedFile);
+		}
 	}
 
 	private handleSearch() {
