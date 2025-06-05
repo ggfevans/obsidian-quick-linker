@@ -6,11 +6,15 @@ class QuickLinkerModal extends Modal {
 	}
 
 	onOpen() {
-		// Modal content will be added here
+		const { contentEl } = this;
+		
+		// Add modal title
+		contentEl.createEl("h2", { text: "Quick Link" });
 	}
 
 	onClose() {
-		// Cleanup when modal is closed
+		const { contentEl } = this;
+		contentEl.empty();
 	}
 }
 
