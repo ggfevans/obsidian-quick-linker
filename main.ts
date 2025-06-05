@@ -1,16 +1,43 @@
-import { App, Editor, MarkdownView, Modal, Plugin } from "obsidian";
+import { App, Editor, EditorPosition, MarkdownView, Modal, Plugin } from "obsidian";
 
 class QuickLinkerModal extends Modal {
-	constructor(app: App) {
+	private editor: Editor;
+	private selectedText: string;
+	private cursorPosition: EditorPosition;
+	private searchInput: HTMLInputElement;
+
+	constructor(app: App, editor: Editor, selectedText: string, cursorPosition: EditorPosition) {
 		super(app);
+		this.editor = editor;
+		this.selectedText = selectedText;
+		this.cursorPosition = cursorPosition;
 	}
 
 	onOpen() {
-		// Modal content will be added here
+		const { contentEl, titleEl } = this;
+		
+		// Set modal title in the title bar
+		titleEl.setText("Quick Link");
+		
+		// Create search input field
+		this.searchInput = contentEl.createEl("input", {
+			type: "text",
+			placeholder: "Search for a note...",
+			cls: "quick-linker-search-input"
+		});
+		
+		// Pre-fill with selected text if any
+		if (this.selectedText) {
+			this.searchInput.value = this.selectedText;
+		}
+		
+		// Auto-focus the input
+		this.searchInput.focus();
 	}
 
 	onClose() {
-		// Cleanup when modal is closed
+		const { contentEl } = this;
+		contentEl.empty();
 	}
 }
 
@@ -26,13 +53,12 @@ export default class QuickLinkerPlugin extends Plugin {
 	onunload() {}
 
 	private insertInternalLinkWithAlias = (editor: Editor, view: MarkdownView) => {
-		const selectedWord = editor.getSelection();
-		const hasSelectedWord = selectedWord !== "";
-
-		const linkText = hasSelectedWord ? `|${selectedWord}` : "";
-		const cursorOffset = hasSelectedWord ? 3 + selectedWord.length : 2;
-
-		this.replaceSelectionAndMoveCursor(editor, `[[${linkText}]]`, cursorOffset);
+		const selectedText = editor.getSelection();
+		const cursorPosition = editor.getCursor();
+		
+		// Open the modal instead of directly inserting
+		const modal = new QuickLinkerModal(this.app, editor, selectedText, cursorPosition);
+		modal.open();
 	};
 
 	private replaceSelectionAndMoveCursor = (editor: Editor, text: string, cursorOffset: number) => {
