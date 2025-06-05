@@ -48,3 +48,12 @@
 .quick-linker-result:hover {
     background-color: var(--background-modifier-hover);
 }
+
+.quick-linker-no-results {
+    padding: 16px 12px;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--font-interface);
+    font-size: var(--font-ui-medium);
+    font-style: italic;
+}
