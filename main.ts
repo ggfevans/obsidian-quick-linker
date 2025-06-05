@@ -1,13 +1,15 @@
-import { App, Editor, MarkdownView, Modal, Plugin } from "obsidian";
+import { App, Editor, EditorPosition, MarkdownView, Modal, Plugin } from "obsidian";
 
 class QuickLinkerModal extends Modal {
 	private editor: Editor;
 	private selectedText: string;
+	private cursorPosition: EditorPosition;
 
-	constructor(app: App, editor: Editor, selectedText: string) {
+	constructor(app: App, editor: Editor, selectedText: string, cursorPosition: EditorPosition) {
 		super(app);
 		this.editor = editor;
 		this.selectedText = selectedText;
+		this.cursorPosition = cursorPosition;
 	}
 
 	onOpen() {
@@ -39,9 +41,11 @@ export default class QuickLinkerPlugin extends Plugin {
 
 	private insertInternalLinkWithAlias = (editor: Editor, view: MarkdownView) => {
 		const selectedText = editor.getSelection();
+		// Store cursor position - if there's a selection, getCursor returns the start position
+		const cursorPosition = editor.getCursor();
 		
 		// Open the modal instead of directly inserting
-		const modal = new QuickLinkerModal(this.app, editor, selectedText);
+		const modal = new QuickLinkerModal(this.app, editor, selectedText, cursorPosition);
 		modal.open();
 	};
 
